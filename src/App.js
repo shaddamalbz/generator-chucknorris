@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import LandingPage from "./pages/LandingPage";
-import Search from "./pages/Search";
-import Category from "./pages/Category";
+import SearchPage from "./pages/SearchPage";
+import CategoryPage from "./pages/CategoryPage";
 
 function App() {
   return (
@@ -10,8 +10,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Route path="/search/:query" component={Search} />
-          <Route path="/category/:query" component={Category} />
+          <Route path="/search/:query" component={SearchPage} />
+          <Route path="/category/:query" component={CategoryPage} />
         </Switch>
       </Router>
     </div>

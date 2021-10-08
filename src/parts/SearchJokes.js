@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./style.css";
+import "../assets/style/css";
 
 export default function SearchJokes(props) {
   const { jokes, query } = props;
