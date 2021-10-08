@@ -5,7 +5,7 @@
 
 header {
   position: relative;
-  min-height: 80px;
+  min-height: 62px;
   background-color: #fefaea;
   display: flex;
   align-items: center;
@@ -17,8 +17,9 @@ section {
   height: 80vh;
 }
 
-.text-lg {
-  font-size: 1.75rem;
+.header-title {
+  font-size: 24px;
+  font-family: "Rye";
 }
 
 .text-center {

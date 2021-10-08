@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "../assets/style/css";
+import "../assets/style.css";
 
 export default function Header() {
   return (
