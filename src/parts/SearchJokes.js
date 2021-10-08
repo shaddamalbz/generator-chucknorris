@@ -7,19 +7,26 @@ export default function SearchJokes(props) {
 
   return (
     <section className="text-center">
-      <figure className="mt-4">
-        <img
-          src={jokes.result !== undefined && jokes.result[0].icon_url}
-          alt="Chuck Norris faces"
-        />
+      <figure className="mt-8">
+        {jokes.result !== undefined ? (
+          <img src={jokes.result[0].icon_url} alt="Chuck Norris faces" />
+        ) : (
+          <p>wait....</p>
+        )}
       </figure>
-      <p className="mt-4 text-primary font-bold">Search Text: {query}</p>
+      <p className="text-primary font-bold mt-4 mb-8 text-base">
+        Search Text: {query}
+      </p>
       {jokes.result !== undefined ? (
         jokes.result.slice(0, 5).map((joke) => {
-          return <h3 className="mt-4">"{joke.value && joke.value}"</h3>;
+          return (
+            <h3 className="mt-4 text-base font-italic">
+              "{joke.value && joke.value}"
+            </h3>
+          );
         })
       ) : (
-        <h3 className="mt-4">Loading....</h3>
+        <h3 className="mt-4">Wait....</h3>
       )}
     </section>
   );

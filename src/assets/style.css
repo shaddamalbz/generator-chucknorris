@@ -72,10 +72,6 @@ select {
   margin-right: 1rem;
 }
 
-figure {
-  padding-bottom: 1.5rem;
-}
-
 .jokes {
   padding-bottom: 24px;
 }
@@ -93,4 +89,18 @@ figure {
 
 .font-italic {
   font-style: italic;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+.mb-8 {
+  margin-bottom: 2rem;
+}
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.pb-6 {
+  padding-bottom: 1.5rem;
 }

@@ -67,7 +67,7 @@ export default class Jokes extends Component {
             </Link>
           </button>
         </div>
-        <figure>
+        <figure className="pb-6">
           {jokes.icon_url ? (
             <img src={jokes.icon_url} alt="Chuck Norris faces" />
           ) : (
