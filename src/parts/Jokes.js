@@ -9,9 +9,9 @@ export default class Jokes extends Component {
     super(props);
     this.state = {
       jokes: {},
-      isLoaded: false,
       query: "",
       category: [],
+      loading: false,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -19,7 +19,7 @@ export default class Jokes extends Component {
 
   componentDidMount() {
     axios.get("https://api.chucknorris.io/jokes/random").then((res) => {
-      this.setState({ jokes: res.data, isLoaded: true });
+      this.setState({ jokes: res.data });
     });
 
     axios.get("https://api.chucknorris.io/jokes/categories").then((res) => {
@@ -30,8 +30,9 @@ export default class Jokes extends Component {
   }
 
   handleClick = () => {
+    this.setState({ loading: true });
     axios.get("https://api.chucknorris.io/jokes/random").then((res) => {
-      this.setState({ jokes: res.data, isLoaded: true });
+      this.setState({ jokes: res.data, loading: false });
     });
   };
 
@@ -45,39 +46,48 @@ export default class Jokes extends Component {
     const { jokes, category } = this.state;
 
     return (
-      <section className="text-center relative">
+      <section className="text-center">
         <div className="search">
           <input
             type="text"
-            placeholder="search jokes by text"
+            placeholder="Search jokes by text"
             onChange={this.handleChange}
             value={this.state.query}
           />
           <button className="btn btn-primary">
             <Link
-              style={{ textDecoration: "none", color: "#ffffff" }}
+              style={{
+                textDecoration: "none",
+                color: "#ffffff",
+                fontSize: "16px",
+              }}
               to={`/search/${this.state.query}`}
             >
               Search!
             </Link>
           </button>
         </div>
-        <figure className="mt-4">
-          <img
-            src={jokes.icon_url && jokes.icon_url}
-            alt="Chuck Norris faces"
-          />
+        <figure>
+          {jokes.icon_url ? (
+            <img src={jokes.icon_url} alt="Chuck Norris faces" />
+          ) : (
+            <p>wait....</p>
+          )}
         </figure>
-        <h3 className="mt-4">{jokes.value && jokes.value}</h3>
-        <button className="btn btn-primary mt-4" onClick={this.handleClick}>
-          Another!
+        <h3 className="jokes font-italic">{jokes.value && jokes.value}</h3>
+        <button
+          className="btn btn-primary text-base"
+          onClick={this.handleClick}
+        >
+          {!this.state.loading ? "Another!" : "Wait...."}
         </button>
-        <div className="mt-40">
+        <div className="category">
+          <label htmlFor="category"></label>
           <select
-            className="mr-4"
             onChange={(e) => this.setState({ query: e.target.value })}
+            id="category"
           >
-            <option>select jokes from category</option>
+            <option>Search jokes by category</option>
             {category.length > 0 &&
               category.map((item) => {
                 return <option value={item}>{item}</option>;
