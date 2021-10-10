@@ -10,7 +10,7 @@ export default function CategoryJokes(props) {
       <figure className="mt-4">
         <img src={jokes && jokes.icon_url} alt="Chuck Norris faces" />
       </figure>
-      <p className="mt-4 text-primary font-bold">Category {query}</p>
+      <p className="mt-4 text-primary font-bold">Category: {query}</p>
       <h3 className="mt-4">"{jokes.value && jokes.value}"</h3>
     </section>
   );
