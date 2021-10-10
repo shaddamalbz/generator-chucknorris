@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+// components
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+
+// assets
 import "../assets/style.css";
 
 export default class Jokes extends Component {
@@ -38,13 +43,12 @@ export default class Jokes extends Component {
 
   handleChange = (e) => {
     this.setState({
-      query: e.target.value,
+      query: e.target.value === 0 ? e.target.innerText : e.target.value,
     });
   };
 
   render() {
     const { jokes, category } = this.state;
-
     return (
       <section className="text-center">
         <div className="search">
@@ -82,17 +86,14 @@ export default class Jokes extends Component {
           {!this.state.loading ? "Another!" : "Wait...."}
         </button>
         <div className="category">
-          <label htmlFor="category"></label>
-          <select
-            onChange={(e) => this.setState({ query: e.target.value })}
-            id="category"
-          >
-            <option>Search jokes by category</option>
-            {category.length > 0 &&
-              category.map((item) => {
-                return <option value={item}>{item}</option>;
-              })}
-          </select>
+          <Autocomplete
+            onChange={this.handleChange}
+            disablePortal
+            id="combo-box-demo"
+            options={category}
+            sx={{ width: 300, marginRight: "1rem" }}
+            renderInput={(params) => <TextField {...params} label="Category" />}
+          />
           <button className="btn btn-primary">
             <Link
               style={{ textDecoration: "none", color: "#ffffff" }}
